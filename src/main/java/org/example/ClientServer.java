@@ -8,7 +8,6 @@ import java.net.Socket;
 
 public class ClientServer {
     public static void main(String[] args) throws IOException {
-        Login loginMessage = new Login();
         final String host = "127.0.0.1";
         final int port = 8080;
 
@@ -16,10 +15,16 @@ public class ClientServer {
         PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         ) {
-            out.println(loginMessage.checkUser());
+            out.println("Netology");
 
-            String resp = in.readLine();
-            System.out.println(resp);
+//            String resp = in.readLine();
+//            System.out.println(resp);
+
+      String resp;
+      while((resp = in.readLine()) != null) {
+          System.out.println(resp);
+      }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -27,11 +32,3 @@ public class ClientServer {
 
 }
 
-class Login {
-    private String name = "User";
-
-    public String checkUser() {
-        return name;
-    }
-
-}
